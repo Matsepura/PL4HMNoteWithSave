@@ -39,16 +39,41 @@
 
 // метод для перехода по кнопке return от noteNameTextField к noteRecordingTextView
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+#warning вот эта строка не нужна т.е. когда вы сообщаете кому-то becomeFirstResponder, то этот кто-то автоматом становится респондером. А респондером может быть лишь один обьект, поэтому предыдущий респондер перестает быть респондером автоматически
     [textField resignFirstResponder];
+    
     [self.noteRecordingTextView becomeFirstResponder];
     return YES;
 
 }
 
+#warning старайтесь более сжато передавать информацию. Программисту понятно, что это метод. Пишите только суть, я бы написал так: Перекинем фокус в поле ввода ниже,  
 // метод скрываиня клавиатуры по нажатию кнопки return в noteRecordingTextView
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+#warning зачем тут инитить записку при каждом новом вводе символа?  Может переместить эту инициализацию куда-то внутрь условия?
     PL4Note *new = [[PL4Note alloc] init];
+    
+#warning старайтесь избегать вложенности с ифами, например проверяя какое-то условие, и, если оно не выполнилось, просто выходите из метода типа такого:
+    
+    //раскомментируйте строки с 58 по 71 ( cmd + / ) и закомментируйте с 75 по 86
+//    if (textView != self.noteRecordingTextView) {
+//        return YES;
+//    }
+//    if ( ! [text isEqualToString:@"\n"]) {
+//        return YES;
+//    }
+//    
+//    [textView resignFirstResponder];
+//    if (_countOfPushReturn < 1) {
+//        NSString *allInOne = [NSString stringWithFormat:@"%@ \n%@", [new writeDate],textView.text ];
+//        textView.text = allInOne;
+//    }
+//    _countOfPushReturn++;
+//    return NO;
+    
+    
+    
     if (textView == self.noteRecordingTextView) {
         if ([text isEqualToString:@"\n"]) {
             [textView resignFirstResponder];
@@ -85,6 +110,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+#warning еще лишний код. Его стоит убрать
 //    [self goBackString];
 
 //    [self textFieldShouldReturn:self.noteNameTextField];
