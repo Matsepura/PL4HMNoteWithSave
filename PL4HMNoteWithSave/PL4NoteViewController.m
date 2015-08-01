@@ -26,6 +26,7 @@
     [save grabNote:self.noteRecordingTextView.text];
     
 }
+
 - (IBAction)downloadNote:(id)sender {
     PL4Note *save = [PL4Note new];
     self.noteRecordingTextView.text = [save loadFromFile];
@@ -35,18 +36,6 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.noteRecordingTextView forKey:@"note"];
 }
-
-
-//- (id)initWithCoder:(NSCoder *)aDecoder{
-//{
-//    self = [super init];
-//    if (self) {
-//        _noteRecordingTextView = [aDecoder decodeObjectForKey:@"note"];
-//    }
-//    return self;
-//}
-//
-//}
 
 // метод для перехода по кнопке return от noteNameTextField к noteRecordingTextView
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -69,7 +58,6 @@
             }
             _countOfPushReturn++;
             return NO;
-
         }
     }
     return YES;
@@ -80,6 +68,8 @@
     [self.noteRecordingTextView setDelegate:self];
 }
 
+
+#warning вот этих вот всех комментариев быть не должно сотрите это
 //-(void) goBackString{
 //    NSString *backString = [NSString stringWithFormat:@"bla bla bla"];
 //    //не работает!!!
@@ -101,6 +91,8 @@
     // Do any additional setup after loading the view.
 }
 
+
+#warning все, что ниже, слудет удалить
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
