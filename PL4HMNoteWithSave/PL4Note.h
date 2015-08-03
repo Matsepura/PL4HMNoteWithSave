@@ -11,6 +11,8 @@
 @interface PL4Note : NSObject
 
 - (NSString *) writeDate;
+#warning судя по коду сюда передается строка, так поменяйте тип с id на NSString
+#warning так же я бы изменил название аргумента в методе на что-то созвучное со словом Note или текст, например
 -(id)grabNote:(id) noteTextView;
 - (NSString*)loadFromFile;
 
